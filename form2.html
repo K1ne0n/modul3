@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>C~Klinik || Data Pasien</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form name="formulir" onsubmit="return validateForm()">
+        <fieldset>
+            <h1>FORM Data Pasien</h1>
+            <legend>C~Klinik</legend>
+            <P>
+                <label>Nama</label>
+                <input type="text" id="nama" name="nama" placeholder="Isikan nama lengkap">
+            </P>
+            <label>Jenis Kelamin</label>
+            <input type="radio" name="jk" value="Laki-laki" />Laki-laki </input>
+            <input type="radio" name="jk" value="Perempuan" />Perempuan </input>
+
+            <p>
+                <label>Tanggal Lahir</label>
+                <input type="date" id="tgl" name="tgl">
+            </p>
+
+            <p>
+                <label>Umur</label>
+                <input type="text" id="umur" name="umur">
+            </p>
+            
+            <p>
+                <label>Alamat</label>
+                <textarea id="alamat" name="alamat"></textarea>
+            </p>
+            <p>
+                <label>Status</label>
+                <select name="status" id="status">
+                    <option value="Pelajar">Pelajar</option>
+                    <option value="Mahasiswa">Mahasiswa</option>
+                    <option value="Bekerja">Bekerja</option>
+                </select>
+            </p>
+
+            <p>
+                <label>Kewarganegaraan</label>
+                <input type="radio" name="kewarga" value="WNI" />WNI</input>
+                <input type="radio" name="kewarga" value="WNA" />WNA</input>
+            </p>
+
+            <p>
+                <label>Golongan Darah</label>
+                <input type="radio" name="gd" value="A" />A</input>
+                <input type="radio" name="gd" value="B" />B</input>
+                <input type="radio" name="gd" value="AB" />AB</input>
+                <input type="radio" name="gd" value="O" />O</input>
+            </p>
+
+            <button type="button" onclick="cetak()" class="button">Tampilkan Data</button>
+
+            <input type="reset" name="reset" value="Hapus" class="button" />
+
+            <p>
+                <h3>Tampil Data</h3>
+                <p id="data"></p>
+                <p id="data1"></p>
+                <p id="data2"></p>
+                <p id="data3"></p>
+                <p id="data4"></p>
+                <p id="data5"></p>
+                <p id="data6"></p>
+                <p id="data7"></p>
+            </p>
+        </fieldset>
+    </form>
+</body>
+<script>
+    function cetak() {
+        var nama = document.getElementById("nama").value;
+        document.getElementById("data").innerHTML = "Nama : " + nama;
+
+        var jk = document.getElementsByName("jk");
+        var gender = "";
+        for (var i = 0; i < jk.length; i++) {
+            if (jk[i].checked) {
+                gender = gender + jk[i].value + " ";
+            }
+        }
+        document.getElementById("data1").innerText = "Jenis Kelamin : " + gender.replace(/,\s*$/, "");
+
+        var date = document.getElementById("tgl").value;
+        document.getElementById("data3").innerHTML = "Tanggal Lahir : " + date;
+
+        var umur = document.getElementById("umur").value;
+        document.getElementById("data2").innerHTML = "Umur : " + umur;
+
+        var alamat = document.getElementById("alamat").value;
+        document.getElementById("data4").innerHTML = "Alamat : " + alamat;
+
+        var status = document.getElementById("status").value;
+            if (status == "Pelajar") {
+                document.getElementById("data5").innerHTML = "Status : Pelajar";
+            }
+            else if (status == "Mahasiswa") {
+                document.getElementById("data5").innerHTML = "Status : Mahasiswa";
+            }
+            else if (status == "Bekerja") {
+                document.getElementById("data5").innerHTML = "Status : Bekerja";
+            }
+
+        var kewarga = document.getElementsByName("kewarga");
+        var warga = "";
+        for (var i = 0; i < kewarga.length; i++) {
+            if (kewarga[i].checked) {
+                warga = warga + kewarga[i].value + " ";
+            }
+        }
+        document.getElementById("data6").innerText = "Kewarganegaraan : " + warga;
+
+        var gd = document.getElementsByName("gd");
+        var gol = "";
+            for(var i = 0; i < gd.length; i++){
+                if(gd[i].checked){
+                gol = gol + gd[i].value+ " ";
+                }
+            }
+        document.getElementById("data7").innerText = "Golongan Darah : "+ gol;
+    }
+</script>
+
+</html>
